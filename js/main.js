@@ -104,49 +104,19 @@
         $(this).addClass('filter-active');
         portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
+
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', sendProxyRequest);
+    function sendProxyRequest() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/proxy', true);
+        xhr.onload = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // code to handle response from proxy
+            }
+        };
+        xhr.send();
+    }
     
 })(jQuery);
-
-
-
-
-
-
-
-
-const submitButton = document.getElementById("sendMessageButton");
-submitButton.addEventListener("click", function() {
-  const url = "https://cors-anywhere.herokuapp.com/https://mashood.odoo.com/web/dataset/call_kw";
-
-  // Replace 'your-api-key' with your actual Odoo API key
-  const apiKey = "d4da17f32e5150b7c47fd6847ee73d60af34016b";
-
-  // Get the input data from the user
-  const inputData = {
-    x_name: 'test',
-    x_customer: 'test customer',
-    // Add more fields as needed
-  };
-
-  // Construct the HTTP request
-  const http = new XMLHttpRequest();
-  http.open("POST", url);
-  http.setRequestHeader("Content-Type", "application/json");
-  http.setRequestHeader("Authorization", `Bearer ${apiKey}`);
-
-  // Handle the response from the server
-  http.onreadystatechange = function() {
-    if (http.readyState === XMLHttpRequest.DONE) {
-      if (http.status === 200) {
-        console.log("Data successfully written to Odoo.");
-      } else {
-        console.log("Error writing data to Odoo.");
-      }
-    }
-  };
-
-  // Send the request to the server
-  http.send(JSON.stringify(inputData));
-});
-
 
