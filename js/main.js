@@ -104,19 +104,18 @@
         $(this).addClass('filter-active');
         portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
-
-    const button = document.getElementById('myButton');
-    button.addEventListener('click', sendProxyRequest);
-    function sendProxyRequest() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', '/proxy', true);
-        xhr.onload = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // code to handle response from proxy
-            }
-        };
-        xhr.send();
-    }
     
 })(jQuery);
+
+window.addEventListener('load', resizeIframe);
+    document.getElementById('contact-form-frame').addEventListener('load', resizeIframe);
+
+
+    function resizeIframe() {
+        console.log('dssdskdsdskdskdskdk')
+      var iframe = document.getElementById('contact-form-frame');
+      if (iframe) {
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+      }
+    }
 
