@@ -135,6 +135,7 @@
       // Attach a click event handler to the button
       $('#contactme').click(function () {
         // Authenticate with the Odoo server and get the user ID
+        console.log('kereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-------------------------------')
         $.xmlrpc({
           url: options.url,
           methodName: 'authenticate',
