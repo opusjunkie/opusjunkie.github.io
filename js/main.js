@@ -110,6 +110,56 @@
         $(this).addClass('filter-active');
         portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
+
+    $(document).ready(function () {
+      // Define the Odoo server URL and database name
+      var serverUrl = 'http://mashood.odoo.com';
+      var dbName = 'mashood';
+
+      // Define the Odoo username and password
+      var username = 'mashoodwyd@gmail.com';
+      var password = 'Mash.227';
+
+      // Define the XML-RPC method and parameters
+      var method = 'execute_kw';
+      var model = 'res.partner';
+      var args = [[['is_company', '=', true]], ['name', 'country_id', 'comment']];
+      var kwargs = {context: {}};
+
+      // Define the XML-RPC client options
+      var options = {
+        url: serverUrl + '/xmlrpc/2/common',
+        headers: {"Content-Type": "application/xml"},
+      };
+
+      // Attach a click event handler to the button
+      $('#contactme').click(function () {
+        // Authenticate with the Odoo server and get the user ID
+        $.xmlrpc({
+          url: options.url,
+          methodName: 'authenticate',
+          params: [dbName, username, password, {}],
+          success: function (response, status, jqXHR) {
+            // Create an XML-RPC client for the model methods
+            var uid = response[0];
+            var models = new xmlrpc.XmlRpcClient(options);
+
+            // Call the model method and log the result
+            models.methodCall(method, [dbName, uid, password, model, 'search_read', args, kwargs], function (err, value) {
+              if (err) {
+                console.error(err);
+              } else {
+                console.log(value);
+              }
+            });
+          },
+          error: function (jqXHR, status, error) {
+            console.error(error);
+          },
+        });
+      });
+    });
+
     
 })(jQuery);
 
