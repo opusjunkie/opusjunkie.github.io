@@ -10,6 +10,12 @@
         }, 1);
     };
     loader();
+
+    var iframe = document.getElementById("contact-form-frame");
+
+    iframe.onload = function(){
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+    }
     
     
     // Initiate the wowjs
@@ -106,16 +112,4 @@
     });
     
 })(jQuery);
-
-window.addEventListener('load', resizeIframe);
-    document.getElementById('contact-form-frame').addEventListener('load', resizeIframe);
-
-
-    function resizeIframe() {
-        console.log('dssdskdsdskdskdskdk')
-      var iframe = document.getElementById('contact-form-frame');
-      if (iframe) {
-        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
-      }
-    }
 
