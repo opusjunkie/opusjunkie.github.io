@@ -3,6 +3,8 @@
 
     // hide only profile information if the link contains profile
     const url = window.location.href;
+    console.log('#########################################')
+    console.log(url)
     if (url.includes('portfolio')) {
         $('.market').show();
     } else {
