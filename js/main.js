@@ -5,7 +5,7 @@
     const url = window.location.href;
     console.log('#########################################')
     console.log(url)
-    if (url.includes('portfolio')) {
+    if (url.includes('market')) {
         $('.market').show();
     } else {
         $('.market').hide();
